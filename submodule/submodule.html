@@ -63,17 +63,127 @@
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-          <a href="#overview" class="mdl-layout__tab is-active">Bacon</a>
+          <a href="#overview" class="mdl-layout__tab">Bacon</a>
+          <a href="#checkout" class="mdl-layout__tab is-active">Checkout</a>
         </div>
       </header>
       <main class="mdl-layout__content">
-        <div class="mdl-layout__tab-panel is-active" id="overview">
+        <div class="mdl-layout__tab-panel" id="overview">
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <button class="copy-btn" type="button">Yeah, I want more bacon!</button>
           </section>
           <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <img id="img-clone" src="http://media.washtimes.com.s3.amazonaws.com/media/image/2015/02/23/bacon.jpg" alt="Bacon" style="width: 100%; height: 100%;">
             <div class="clone-container"></div>
+          </section>
+        </div>
+        <div class="mdl-layout__tab-panel is-active" id="checkout">
+          <section class="checkout-container">
+            <form class="checkout__form">
+              <div class="checkout__form-personal-info">
+                <h2 class="checkout__form-title"><span class="badge">1</span> Personal Information</h2>
+                <div class="flex-container">
+                    <div class="form-control form-control--flex">
+                      <label class="label form-control__label" for="first_name">
+                        First Name
+                      </label>
+                      <input class="input form-control__input" id="first_name" placeholder="Elon"/>
+                      <small></small>
+                    </div>
+                    <div class="form-control form-control--flex">
+                      <label class="label form-control__label" for="last_name">
+                        Last Name
+                      </label>
+                      <input class="input form-control__input" id="last_name" placeholder="Musk"/>
+                      <small></small>
+                    </div>
+                </div>
+                <div class="form-control">
+                    <label class="label form-control__label" for="email">
+                      Email
+                    </label>
+                    <input class="input form-control__input" id="email" placeholder="elon@spacex.com"/>
+                    <small></small>
+                </div>
+                <div class="flex-container">
+                    <div class="form-control form-control--flex">
+                      <label class="label form-control__label" for="country">
+                        Country
+                      </label>
+                      <input class="input form-control__input" id="country" placeholder="United States"/>
+                      <small></small>
+                    </div>
+                    <div class="form-control form-control--flex">
+                      <label class="label form-control__label" for="postal_code">
+                        Postal Code
+                      </label>
+                      <input class="input form-control__input" id="postal_code" placeholder="10001"/>
+                      <small></small>
+                  </div>
+                </div>
+                <div class="form-control">
+                    <label class="label form-control__label" for="phone_number">
+                      Phone Number
+                    </label>
+                    <input class="input form-control__input" id="phone_number" placeholder="(212) 692-93-92"/>
+                  <small></small>
+                </div>
+              </div>
+              <div class="checkout__form-payments-info">
+                <h2 class="checkout__form-title"><span class="badge">2</span> Payments Details</h2>
+                <div class="form-control card-input">
+                  <label class="label form-control__label" for="label">
+                    Credit Card Number
+                  </label>
+                  <input class="input form-control__input" id="label" placeholder="0000 - 0000 - 0000 - 0000"/>
+                  <small></small>
+                </div>
+                <div class="flex-container">
+                  <div class="form-control code-input form-control--flex">
+                    <label class="label form-control__label" for="label">
+                      Security code
+                    </label>
+                    <input class="input form-control__input" id="label" placeholder="United States"/>
+                    <small></small>
+                  </div>
+                  <div class="form-control form-control--flex">
+                    <label class="label form-control__label" for="label">
+                      Expiration Date
+                    </label>
+                    <input class="input form-control__input" id="label" placeholder="10001"/>
+                    <small></small>
+                  </div>
+                </div>
+              </div>
+              <button class="btn">Complete Purchase</button>
+            </form>
+            <table class="chekout__table">
+                  <caption>Your order</caption>
+                  <tbody>
+                    <tr>
+                      <td>Apple Watch Sport</td>
+                      <td>$ 580</td>
+                    </tr>
+                    <tr>
+                      <td>Modern Buckle</td>
+                      <td>$ 380</td>
+                    </tr>
+                    <tr>
+                      <td>Total Purchase</td>
+                      <td>$ 960</td>
+                    </tr>
+                    <tr>
+                      <td>Estimated tax</td>
+                      <td>$ 0</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Total</td>
+                      <td>$ 960</td>
+                    </tr>
+                  </tfoot>
+            </table>
           </section>
         </div>
         <footer class="mdl-mega-footer">

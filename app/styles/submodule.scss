@@ -1,13 +1,239 @@
 @import '_variables';
+@import '_mixins';
+
+.wrapper-inner {
+  margin: 0 auto;
+}
 
 .clone-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .cloned-img {
-    width: $base*24;
-    height: $base*24;
-    margin: $base;
+  width: $base*24;
+  height: $base*24;
+  margin: $base;
+}
+
+.input {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: $base/2;
+  outline: none;
+}
+
+// === CHECKOUT FORM ===
+.checkout-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: $base*10;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.form-control {
+  @include shadow(#ccc);
+
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $base*4;
+  padding:$base*2 $base*3;
+  border-radius: $base;
+  color: #000;
+  background-color: #fff;
+
+  &__label {
+    font-size: $fz-xs;
+  }
+
+  &__input {
+    font-size: $fz-m;
+    border: 1px solid transparent;
+  }
+
+  &--flex {
+    flex-grow: 1;
+
+    & + & {
+      margin-left: $base*4;
+    }
+  }
+}
+
+
+.checkout__form {
+  $parent: &;
+
+  &-payments-info {
+    #{$parent}-label {
+      position: relative;
+    }
+
+    #{$parent}_label::after {
+      position: absolute;
+      top: -5%;
+      left: 39%;
+      display: block;
+      width: 100%;
+      height: 100%;
+      content: '';
+      background: url(../images/padlock.png) no-repeat 50% 50%;
+      transform: translate(-50%);
+    }
+  }
+  .card-input {
+    position: relative;
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 90%;
+      display: block;
+      width: $base*12;
+      height: 100%;
+      content: '';
+      background: url(../images/visa.svg) no-repeat 50% 50%;
+      transform: translate(-50%);
+    }
+  }
+  .code-input {
+    position: relative;
+
+    svg {
+      fill: #ccc;
+    }
+
+    &::after {
+      position: absolute;
+      top: 33%;
+      left: 93%;
+      display: block;
+      width: $base*5;
+      height: $base*5;
+      content: '';
+      background: url(../images/question-mark.svg) no-repeat 50% 50%;
+      transform: translate(-50%);
+    }
+  }
+}
+
+.checkout__form-title {
+  position: relative;
+  margin: 0;
+  font-size: $fz-s;
+  color: #000;
+  text-transform: uppercase;
+
+  .badge {
+    position: absolute;
+    top: 22%;
+    left: -4%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: $base*6;
+    height: $base*6;
+    border-radius: 100%;
+    color: #fff;
+    background-color: #000;
+    transform: translate(-50%);
+  }
+}
+
+.btn {
+  @include shadow( #5db603);
+
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: $base * 3 $base * 4;
+  color: #fff;
+  background-color: #6bd400;
+  border: 1px solid transparent;
+  border-radius: $base/2;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover {
+    background-color: darken(#6bd400, 5%);
+  }
+
+  &::after {
+    position: absolute;
+    top: 15%;
+    left: 28%;
+    display: block;
+    width: $base*6;
+    height: $base*6;
+    content: '';
+    background: url(../images/cart-30-24.png) no-repeat 50% 50%;
+    transform: translate(-50%);
+  }
+}
+
+.chekout__table {
+  @include shadow(#ccc);
+
+  margin-top: $base*3;
+  margin-left: $base*4;
+  padding: $base*3;
+  color: #000;
+  background-color: #fff;
+  border: 3px dotted #f2f2f2;
+  border-radius: $base/2;
+
+  caption {
+    padding: $base*2 0;
+    text-align: left;
+    font-size: $fz-s;
+    text-transform: uppercase;
+  }
+
+  td::nth-child(2) {
+    text-align: right;
+  }
+
+  tbody {
+    td {
+      padding-right: $base*15;
+      padding-bottom: $base;
+    
+      &:nth-child(2) {
+        padding-right: 0;
+        padding-left: $base*15;
+      }
+    }
+
+    tr {
+      &:nth-child(2) {
+        td {
+          padding-bottom: $base*6;
+        }
+      }
+      
+      &:nth-child(2n) {
+        td {
+          border-bottom: 2px dotted #f2f2f2;
+        }
+      }
+    }
+  }
+
+  tfoot {
+    font-weight: bold;
+    td {
+      padding: $base*4 0;
+    }
+    td:nth-child(2) {
+      padding-right: 0;
+      padding-left: $base*12;
+      font-size: $fz-m;
+    }
+  }
 }
