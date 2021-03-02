@@ -182,7 +182,7 @@ html, body {
 }
 .mdl-demo .mdl-layout__tab-panel:not(#overview) {
   background-color: #f2f2f2;
-  /* Change later */
+  /* Overide */
   /* background-color: #fff; */
 }
 .mdl-demo #features section {

@@ -76,6 +76,7 @@
   }
 
   // Your custom JavaScript goes here
+  // === Copy Img Functionality ===
   const copyBtn = document.querySelector('.copy-btn');
   const imgToClone = document.querySelector('#img-clone');
   const imgCloneContainer = document.querySelector('.clone-container');
@@ -93,4 +94,114 @@
   function cloneImg() {
     imgCloneContainer.appendChild(imgInstance.cloneNode(true));
   }
+  // === Validate Functionality ===
+  Maska.create('#form .masked');
+  class FormValidator {
+    constructor(form, fields) {
+      this.form = form
+      this.fields = fields
+    }  
+    
+    initialize() {
+      this.validateOnSubmit()
+    }
+    
+    validateOnSubmit () {
+      // let self = this
+      
+      this.form.addEventListener('submit', e => {
+        e.preventDefault()
+        this.fields.forEach(field => {
+          const input = document.querySelector(`#${field}`)
+          this.validateFields(input)
+        })
+      })
+    }
+    
+    validateFields(field) {
+      if (field.value.trim() === '') {
+        return this.setStatus(field, `${field.previousElementSibling.innerText} cannot be blank`, 'error')
+      } else {
+        this.setStatus(field, null, 'success')
+      }
+      
+      if (field.type === 'email') {
+        const re = /\S+@\S+\.\S+/
+        if (re.test(field.value)) {
+          this.setStatus(field, null, 'success')
+        } else {
+          this.setStatus(field, 'Please enter valid email address', 'error')
+        }
+      }
+      if(field.id === 'expire_date') {
+        const {now, expireDate} = this.parseDate(field.value)
+
+        if(expireDate < now) {
+          this.setStatus(field, 'Please enter valid expiration date', 'error')
+        } else {
+          this.setStatus(field, null, 'success')
+        }
+      }
+
+      if(field.id === 'secure_code') {
+        const re = /^[0-9]+$/
+        if(re.test(field.value)) {
+          this.setStatus(field, null, 'success')
+        } else {
+          this.setStatus(field, 'Secure code must contain only numbers', 'error')
+        }
+      }
+
+      if(field.id === 'card_number') {
+        if(field.value.startsWith('4')) {
+          this.setStatus(field, null, 'success')
+        } else {
+          this.setStatus(field, 'Card Number of Visa must starts with 4', 'error')
+        }
+      }
+    }
+
+    parseDate(date) {
+      const [month, year] = date.split('/')
+      const parsedMonth = +month === 1 ? 0 : +month - 1
+      const pasrsedYear = Number(`20${year}`)
+
+      return {
+        now: new Date().getTime(),
+        expireDate: new Date(pasrsedYear, parsedMonth)
+      }
+    }
+  
+    setStatus(field, message, status) {
+      const errorMessage = field.parentElement.parentElement.querySelector('.error-message')
+  
+      if (status === 'success') {
+        if (errorMessage) { errorMessage.innerText = '' }
+        field.parentElement.classList.add('success')
+        field.parentElement.classList.remove('invalid')
+      } 
+      
+      if (status === 'error') {
+        field.parentElement.parentElement.querySelector('.error-message').innerText = message
+        field.parentElement.classList.remove('success')
+        field.parentElement.classList.add('invalid')
+      }    
+    }
+  }
+  
+  const form = document.querySelector('.checkout__form')
+  const fields = [
+    'first_name', 
+    'last_name', 
+    'email', 
+    'postal_code', 
+    'expire_date', 
+    'secure_code',
+    'card_number',
+    'phone_number'
+  ]
+  
+  const validator = new FormValidator(form, fields)
+  validator.initialize()
+
 })();
