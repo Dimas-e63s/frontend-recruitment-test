@@ -76,4 +76,21 @@
   }
 
   // Your custom JavaScript goes here
+  const copyBtn = document.querySelector('.copy-btn');
+  const imgToClone = document.querySelector('#img-clone');
+  const imgCloneContainer = document.querySelector('.clone-container');
+
+  copyBtn.addEventListener('click', cloneImg);
+
+  const makeImgInstance = () => {
+    const newImg = document.createElement('img');
+    newImg.src = imgToClone.src;
+    newImg.classList.add('cloned-img');
+    return newImg;
+  };
+  const imgInstance = makeImgInstance();
+
+  function cloneImg() {
+    imgCloneContainer.appendChild(imgInstance.cloneNode(true));
+  }
 })();

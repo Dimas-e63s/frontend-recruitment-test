@@ -1,0 +1,13 @@
+@import '_variables';
+
+.clone-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cloned-img {
+    width: $base*24;
+    height: $base*24;
+    margin: $base;
+}
